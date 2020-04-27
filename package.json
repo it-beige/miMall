@@ -1,0 +1,20 @@
+{
+  "name": "miSmall",
+  "version": "1.0.0",
+  "description": "使用VUe全家桶高仿小米商城",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/it-beige/miSmall.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/it-beige/miSmall/issues"
+  },
+  "homepage": "https://github.com/it-beige/miSmall#readme"
+}
