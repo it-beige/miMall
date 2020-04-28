@@ -7,11 +7,20 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+// import axios from 'axios'
+import jsonp from 'jsonp'
 
 export default {
   name: 'App',
   components: {
     HelloWorld
+  },
+  mounted () {
+    // let url = 'https://www.easy-mock/mock/5b012c1fe6e1035843cd3aff/mockapi/table/list'
+    let url = 'api/search/hotwords'
+    jsonp(url, (err, res) => {
+      console.log(res);
+    })
   }
 }
 </script>
