@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav-header></nav-header>
+    <order-header></order-header>
     <router-view></router-view>
     <nav-footer></nav-footer>
   </div>
@@ -8,8 +8,14 @@
 
 
 <script>
+import OrderHeader from '../components/OrderHeader'
+import NavFooter from '../components/NavFooter'
 export default {
-  name: 'nav-header'
+  name: 'order',
+  components: {
+    OrderHeader,
+    NavFooter
+  }
 }
 </script>
 
