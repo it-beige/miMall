@@ -1,14 +1,21 @@
 <template>
-  <div>index</div>
+  <div class="index">
+    <service-bar></service-bar>
+  </div>
+  
 </template>
 
 
 <script>
+import serviceBar from '../components/serviceBar';
 export default {
-  name: 'index'
+  name: 'index',
+  components: {
+    serviceBar
+  }
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 
 </style>
