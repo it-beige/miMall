@@ -113,7 +113,7 @@
         <swiper :options="swiperOption">
           <swiper-slide v-for="(item, index) in slideList" :key="index">
             <a :href="`/#/product/${item.id}`">
-              <img :src="item.img" />
+              <img v-lazy="item.img" />
             </a>
           </swiper-slide>
           <!-- 分页器 -->
@@ -130,12 +130,12 @@
           v-for="(item, index) in adsList"
           :key="index"
         >
-          <img :src="item.img" alt />
+          <img v-lazy="item.img" alt />
         </a>
       </div>
       <div class="banner">
         <a href="/#/product/30">
-          <img src="/imgs/banner-1.png" alt />
+          <img v-lazy="`/imgs/banner-1.png`" alt />
         </a>
       </div>
     </div>
@@ -145,7 +145,7 @@
           <div class="wrapper">
             <div class="banner-left">
               <a href="/#/product/35">
-                <img class="b-img" src="/imgs/mix-alpha.jpg" alt />
+                <img class="b-img" v-lazy="'/imgs/mix-alpha.jpg'" alt />
               </a>
             </div>
             <div class="list-box">
@@ -153,7 +153,7 @@
                 <div class="item" v-for="(item, j) in arr" :key="j">
                   <span :class="{'product newProduct' : j % 2 == 0}">新品</span>
                   <div>
-                    <img class="item-img" :src="item.mainImage" alt />
+                    <img class="item-img" v-lazy="item.mainImage" alt />
                   </div>
                   <div class="item-info">
                     <h3 class="info-name">{{item.name}}</h3>

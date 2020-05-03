@@ -34,7 +34,7 @@
                     <div class="pro-img">
                       <img
                         class="img"
-                        :src="item.mainImage"
+                        v-lazy="item.mainImage"
                         :alt="item.subtitle"
                       />
                     </div>
@@ -46,12 +46,44 @@
             </div>
           </div>
           <div class="item-menu">
-            <span>RedMi红米</span>
-            <div class="children"></div>
+            <span>笔记本</span>
+            <div class="children">
+              <ul>
+                <li class="product" v-for="(item, index) in jotterList" :key="index">
+                  <a class="product-wrapper" href="`/#/index" target="_blank">
+                    <div class="pro-img">
+                      <img
+                        class="img"
+                        v-lazy="item.mainImage"
+                        :alt="item.name"
+                      />
+                    </div>
+                    <div class="pro-name">{{item.name}}</div>
+                    <div class="pro-price">{{item.price}}</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
           <div class="item-menu">
-            <span>笔记本</span>
-            <div class="children"></div>
+            <span>电视</span>
+             <div class="children">
+              <ul>
+                <li class="product" v-for="(item, index) in televisionList" :key="index">
+                  <a class="product-wrapper" href="`/#/index" target="_blank">
+                    <div class="pro-img">
+                      <img
+                        class="img"
+                        v-lazy="item.mainImage"
+                        :alt="item.name"
+                      />
+                    </div>
+                    <div class="pro-name">{{item.name}}</div>
+                    <div class="pro-price">{{item.price}}</div>
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         <div class="header-search">
@@ -72,7 +104,71 @@ export default {
   data() {
     return {
       username: '',
-      phoneList: []
+      phoneList: [],
+      televisionList: [
+        {
+          mainImage: '/imgs/nav-img/nav-3-1.jpg',
+          name: '小米壁画电视 65英寸',
+          price: '699元'
+        },
+        {
+          mainImage: '/imgs/nav-img/nav-3-2.jpg',
+          name: '小米全面屏电视E55A',
+          price: '1999元'
+        },
+        {
+          mainImage: '/imgs/nav-img/nav-3-3.png',
+          name: '小米电视4A 32英寸',
+          price: '8999元'
+        },
+        {
+          mainImage: '/imgs/nav-img/nav-3-4.jpg',
+          name: 'Redmi 智能电视 MAX 98',
+          price: '19999元'
+        },
+        {
+          mainImage: '/imgs/nav-img/nav-3-5.jpg',
+          name: 'Redmi 红米电视 70英寸 R70A',
+          price: '3099元'
+        },
+        {
+          mainImage: '/imgs/nav-img/nav-3-6.png',
+          name: '小米电视4A 65英寸',
+          price: '6999元'
+        },
+      ],
+      jotterList: [
+        {
+          mainImage: '/imgs/nav-img/nav-6-1.webp',
+          name: 'RedmiBook 13',
+          price: '4199元起'
+        },
+        {
+          mainImage: '/imgs/nav-img/nav-6-2.png',
+          name: '小米笔记本Pro 15',
+          price: '5499元起'
+        },
+        {
+          mainImage: '/imgs/nav-img/nav-6-3.webp',
+          name: 'RedmiBook 14',
+          price: '3999元起'
+        },
+        {
+          mainImage: '/imgs/nav-img/nav-6-4.webp',
+          name: '游戏本2020款',
+          price: '6999元起'
+        },
+        {
+          mainImage: '/imgs/nav-img/nav-6-5.png',
+          name: '小米笔记本 15.6"',
+          price: '3899元起'
+        },
+         {
+          mainImage: '/imgs/nav-img/nav-6-6.png',
+          name: '小米笔记本Air 12.5"',
+          price: '3299元起'
+        }
+      ]
     }
   },
   filters: {

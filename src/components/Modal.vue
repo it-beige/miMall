@@ -11,11 +11,11 @@
           <slot name="body"></slot>
         </div>
         <div class="modal-footer">
-          <a href="javascript:;" class="btn" v-if="btnType == 1" @click="$emit('submit')">确定</a>
-          <a href="javascript:;" class="btn" v-if="btnType == 2" @click="$emit('cancel')">取消</a>
+          <a href="javascript:;" class="btn" v-if="btnType == 1" @click="$emit('submit')">{{sureText}}</a>
+          <a href="javascript:;" class="btn" v-if="btnType == 2" @click="$emit('cancel')">{{cancleText}}</a>
           <div class="btn-group" v-if="btnType == 3">
-            <a href="javascript:;" class="btn" @click="$emit('submit')">确定</a>
-            <a href="javascript:;" class="btn" @click="$emit('cancel')">取消</a>
+            <a href="javascript:;" class="btn" @click="$emit('submit')">{{sureText}}</a>
+            <a href="javascript:;" class="btn" @click="$emit('cancel')">{{cancleText}}</a>
           </div>
         </div>
       </div>
