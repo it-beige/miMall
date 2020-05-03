@@ -13,3 +13,33 @@
   background: url($src) no-repeat center;
   background-size: $size;
 }
+
+// 设定宽高
+@mixin wh($w:100%, $h:100%) {
+  width: $w;
+  height: $h;
+}
+
+// 设定定位
+@mixin position($pos:absolute, $top:0, $left:0) {
+  position: $pos;
+  top: $top;
+  left: $left;
+}
+
+// 设定图片定位
+@mixin positionImg($pos:absolute, $top:0, $right:0, $w:100%, $h:100%, $img:'') {
+  position: $pos;
+  top: $top;
+  right: $right;
+  width: $w;
+  height: $h;
+  background: url($img) no-repeat center;
+  background-size: contain;
+}
+
+// 设定高和行高
+@mixin hl($height:100%, $line-height: 100%) {
+  height: $height;
+  line-height: $line-height;
+}

@@ -151,14 +151,14 @@
             <div class="list-box">
               <div class="list" v-for="(arr, i) in phoneList" :key="i">
                 <div class="item" v-for="(item, j) in arr" :key="j">
-                  <span class="product newProduct">新品</span>
+                  <span :class="{'product newProduct' : j % 2 == 0}">新品</span>
                   <div>
-                    <img class="item-img" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6f2493e6c6fe8e2485c407e5d75e3651.jpg" alt />
+                    <img class="item-img" :src="item.mainImage" alt />
                   </div>
                   <div class="item-info">
-                    <h3 class="info-name">Redmi Note 8 Pro</h3>
-                    <p class="info-desc">6400万全场景四摄</p>
-                    <p class="info-price">6999元</p>
+                    <h3 class="info-name">{{item.name}}</h3>
+                    <p class="info-desc">{{item.subtitle}}</p>
+                    <p class="info-price" @click="addCart(item.id)">{{item.price}}元</p>
                   </div>
                 </div>
               </div>
@@ -167,12 +167,26 @@
         </div>
       </div>
     <service-bar></service-bar>
+    <modal 
+    title="提示" 
+    sureText="查看购物车"
+    btnType='1'
+    modalType="middle"
+    :showModal="showModal"
+    @submit="goToCart"
+    @cancel="showModal = false"
+    >
+    <template v-slot:body>
+      <p>商品添加成功！</p>
+    </template>
+    </modal>
   </div>
 </template>
 
 
 <script>
-import serviceBar from "../components/serviceBar";
+import ServiceBar from "../components/ServiceBar";
+import Modal from "../components/Modal";
 import { swiper, swiperSlide } from "vue-awesome-swiper";
 import "swiper/dist/css/swiper.css";
 export default {
@@ -180,7 +194,8 @@ export default {
   components: {
     swiper,
     swiperSlide,
-    serviceBar
+    ServiceBar,
+    Modal
   },
   data() {
     return {
@@ -291,11 +306,43 @@ export default {
           img: "/imgs/ads/ads-4.jpg"
         }
       ],
-      phoneList: [
-        [1, 1, 1, 1],
-        [1, 1, 1, 1]
-      ]
+      phoneList: [],
+      showModal: false
     };
+  },
+  mounted() {
+    this.init();
+  },
+  methods: {
+    // 页面加载获取数据
+    init() {
+      this.axios.get('/products', {
+        params: {
+          categoryId: 100012,
+          pageSize: 14
+        }
+      }).then(res => {
+        res.list = res.list.slice(6, 14);
+        this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];
+      })
+    },
+    // 添加购物车
+    addCart() {
+      this.showModal = true;
+      return;
+      /* this.axios.post('/carts', {
+        productId: id,
+        selected: true
+      }).then(() => {
+
+      }).catch(() => {
+        this.showModal = true;
+      }) */
+    },
+    // 查看购物车
+    goToCart() {
+      
+    }
   }
 };
 </script>
@@ -438,12 +485,17 @@ export default {
             font-size: 14px;
             color: $colorG;
           }
+          span {
+            visibility: hidden;
+          }
           .newProduct {
+            visibility: inherit;
             background-color: #7ecf68;
           }
 
           .item-img {
             display: inline-block;
+            width: 100%;
             height: 195px;
           }
           .item-info {

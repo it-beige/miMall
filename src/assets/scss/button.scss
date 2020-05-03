@@ -1,0 +1,35 @@
+.btn {
+  display: inline-block;
+  width: 110px;
+  line-height: 30px;
+  text-align: center;
+  background-color: $colorA;
+  color: $colorG;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-defalut {
+  background-color: #b0b0b0;
+  color: $colorG;
+}
+
+.btn-large {
+  width: 202px;
+  @include hl(50px, 50px);
+  font-size: $fontH;
+}
+.btn-huge {
+  width: 300px;
+  @include hl(54px, 54px);
+  font-size: $fontI;
+}
+
+.btn-group {
+  .btn{
+    margin-right: 20px;
+    &:last-child{
+      margin-right: 0;
+    }
+  }
+}

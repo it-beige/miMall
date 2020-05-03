@@ -1,0 +1,55 @@
+.modal {
+  z-index: 99;
+  @include wh(100%, 100%);
+  @include position(fixed);
+  transition: all .5s;
+  .mask {
+    @include wh(100%, 100%);
+    @include position(fixed);
+    background-color: $colorI;
+    opacity: .5;
+  }
+
+  &.slide-enter-active {
+    top: 0;
+  }
+  &.slide-leave-active {
+    top: -100%;
+  }
+  &.slide-enter {
+    top: -100%;
+  }
+
+  .modal-dialog {
+    @include position(absolute, 40%, 50%);
+    @include wh(660px, auto);
+    background-color: $colorG;
+    transform: translate(-50%, -50%);
+
+    .modal-header {
+      @include hl(60px, 60px);
+      background-color: $colorJ;
+      font-size: $fontI;
+      padding: 0 25px;
+
+      .icon-close {
+        @include positionImg(absolute, 23px, 25px, 14px, 14px, '/imgs/icon-close.png');
+        transition: all .5s;
+        &:hover {
+          transform: scale(1.5);
+        }
+      }
+    }
+
+    .modal-body {
+      padding: 42px 40px 54px;
+      font-size: $fontJ;
+    }
+
+    .modal-footer {
+      @include hl(82px, 82px);
+      text-align: center;
+      background-color: $colorJ;
+    }
+  }
+}
