@@ -88,7 +88,7 @@
                 <ul v-for="(item, index) in menuList" :key="index">
                   <li v-for="(subItem, index) in item" :key="index">
                     <a :href="`${subItem ? `/#/product${subItem.id}` : 'javascript:;'}`">
-                      <img :src="`${subItem ? subItem.img : 'imgs/item-box-1.png'}`" alt="">
+                      <img :src="`${subItem ? subItem.img : 'imgs/item-box-1.png'}`" alt />
                       {{`${subItem ? subItem.name : '小米'}`}}
                     </a>
                   </li>
@@ -101,7 +101,7 @@
                 <ul v-for="(item, index) in menuList" :key="index">
                   <li v-for="(subItem, index) in item" :key="index">
                     <a :href="`${subItem ? `/#/product${subItem.id}` : 'javascript:;'}`">
-                      <img :src="`${subItem ? subItem.img : 'imgs/item-box-1.png'}`" alt="">
+                      <img :src="`${subItem ? subItem.img : 'imgs/item-box-1.png'}`" alt />
                       {{`${subItem ? subItem.name : '小米'}`}}
                     </a>
                   </li>
@@ -124,16 +124,48 @@
         </swiper>
       </div>
       <div class="ads-box">
-        <a class="ads-item" :href="`/#/product${item.id}`" v-for="(item, index) in adsList" :key="index">
-          <img :src="item.img" alt="">
+        <a
+          class="ads-item"
+          :href="`/#/product${item.id}`"
+          v-for="(item, index) in adsList"
+          :key="index"
+        >
+          <img :src="item.img" alt />
         </a>
       </div>
       <div class="banner">
         <a href="/#/product/30">
-          <img src="/imgs/banner-1.png" alt="">
+          <img src="/imgs/banner-1.png" alt />
         </a>
       </div>
     </div>
+    <div class="product-box">
+        <div class="container">
+          <h2 class="pro-phone">手机</h2>
+          <div class="wrapper">
+            <div class="banner-left">
+              <a href="/#/product/35">
+                <img class="b-img" src="/imgs/mix-alpha.jpg" alt />
+              </a>
+            </div>
+            <div class="list-box">
+              <div class="list" v-for="(arr, i) in phoneList" :key="i">
+                <div class="item" v-for="(item, j) in arr" :key="j">
+                  <span class="product newProduct">新品</span>
+                  <div>
+                    <img class="item-img" src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6f2493e6c6fe8e2485c407e5d75e3651.jpg" alt />
+                  </div>
+                  <div class="item-info">
+                    <h3 class="info-name">Redmi Note 8 Pro</h3>
+                    <p class="info-desc">6400万全场景四摄</p>
+                    <p class="info-price">6999元</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <service-bar></service-bar>
   </div>
 </template>
@@ -241,21 +273,28 @@ export default {
         [0, 0, 0, 0],
         [0, 0, 0, 0]
       ],
-      adsList:[
-          {
-            id:33,
-            img:'/imgs/ads/ads-1.png'
-          },{
-            id:48,
-            img:'/imgs/ads/ads-2.jpg'
-          },{
-            id:45,
-            img:'/imgs/ads/ads-3.png'
-          },{
-            id:47,
-            img:'/imgs/ads/ads-4.jpg'
-          }
-        ],
+      adsList: [
+        {
+          id: 33,
+          img: "/imgs/ads/ads-1.png"
+        },
+        {
+          id: 48,
+          img: "/imgs/ads/ads-2.jpg"
+        },
+        {
+          id: 45,
+          img: "/imgs/ads/ads-3.png"
+        },
+        {
+          id: 47,
+          img: "/imgs/ads/ads-4.jpg"
+        }
+      ],
+      phoneList: [
+        [1, 1, 1, 1],
+        [1, 1, 1, 1]
+      ]
     };
   }
 };
@@ -355,11 +394,87 @@ export default {
       width: 296px;
       height: 167px;
     }
-
   }
 
   .banner {
     margin-bottom: 50px;
+  }
+
+  .product-box {
+    padding: 30px 0 50px;
+    background-color: $colorJ;
+    .pro-phone {
+      font-size: 22px;
+      height: 21px;
+      line-height: 21px;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .wrapper {
+      display: flex;
+      .banner-left {
+        margin-right: 16px;
+        .b-img {
+          width: 224px;
+          height: 619px;
+        }
+      }
+
+      .list {
+        @include flex();
+        width: 986px;
+        margin-bottom: 14px;
+        .item {
+          width: 236px;
+          height: 302px;
+          background-color: $colorG;
+          text-align: center;
+          .product {
+            display: inline-block;
+            width: 67px;
+            height: 24px;
+            line-height: 24px;
+            font-size: 14px;
+            color: $colorG;
+          }
+          .newProduct {
+            background-color: #7ecf68;
+          }
+
+          .item-img {
+            display: inline-block;
+            height: 195px;
+          }
+          .item-info {
+            .info-name {
+              font-size: $fontJ;
+              line-height: 14px;
+              color: $colorB;
+            }
+
+            .info-desc {
+              color: $colorD;
+              line-height: 13px;
+              margin: 6px auto 13px;
+            }
+
+            .info-price {
+              color: #f20a0a;
+              font-size: 14px;
+              font-weight: 700;
+              cursor: pointer;
+              &:after {
+                content: '';
+                @include bgImg(22px, 22px, '/imgs/icon-cart-hover.png');
+                vertical-align: middle;
+                margin-left: 5px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>

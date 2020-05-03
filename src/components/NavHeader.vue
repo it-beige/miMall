@@ -195,6 +195,7 @@ export default {
           }
 
           .children {
+            z-index: 10;
             width: 1226px;
             height: 0;
             opacity: 0;
