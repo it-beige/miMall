@@ -27,6 +27,13 @@
   left: $left;
 }
 
+// 设定定位
+@mixin positionR($pos:absolute, $bottom:0, $right:0) {
+  position: $pos;
+  bottom: $bottom;
+  right: $right;
+}
+
 // 设定图片定位
 @mixin positionImg($pos:absolute, $top:0, $right:0, $w:100%, $h:100%, $img:'') {
   position: $pos;
@@ -42,4 +49,9 @@
 @mixin hl($height:100%, $line-height: 100%) {
   height: $height;
   line-height: $line-height;
+}
+
+// 设定边框
+@mixin bd($big:1px, $line:solid, $color:#e5e5e5) {
+  border: $big $line $color;
 }
