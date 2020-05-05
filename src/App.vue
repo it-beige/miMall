@@ -21,7 +21,7 @@ export default {
   methods: {
     // 获取用户信息
     getUser() {
-      this.axios.get('/user').then((res) => {
+      this.axios.get('/user').then((res = {}) => {
         this.$store.dispatch('saveUserName', res.username);
       })
     },

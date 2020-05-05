@@ -126,7 +126,7 @@
       <div class="ads-box">
         <a
           class="ads-item"
-          :href="`/#/product${item.id}`"
+          :href="`/#/product/${item.id}`"
           v-for="(item, index) in adsList"
           :key="index"
         >

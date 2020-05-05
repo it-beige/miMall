@@ -55,3 +55,9 @@
 @mixin bd($big:1px, $line:solid, $color:#e5e5e5) {
   border: $big $line $color;
 }
+
+// 图片/高度
+@mixin bgh($img, $h:0) {
+  background: url($img) no-repeat center;
+  height: $h;
+}
