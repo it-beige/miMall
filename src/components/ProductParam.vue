@@ -47,8 +47,9 @@ export default {
 
 .nav-bar {
   @include hl(70px, 70px);
-  @include bd();
+  border-top: 1px solid #e5e5e5;
   background-color: $colorG;
+  z-index: 10;
   .container {
     @include flex();
     .pro-title {

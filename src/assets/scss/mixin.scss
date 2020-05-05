@@ -44,11 +44,26 @@
   background: url($img) no-repeat center;
   background-size: contain;
 }
+@mixin positionImgLeft($pos:absolute, $top:0, $left:0, $w:100%, $h:100%, $img:'') {
+  position: $pos;
+  top: $top;
+  left: $left;
+  width: $w;
+  height: $h;
+  background: url($img) no-repeat center;
+  background-size: contain;
+}
 
 // 设定高和行高
 @mixin hl($height:100%, $line-height: 100%) {
   height: $height;
   line-height: $line-height;
+}
+
+// 设定高度和字体大小
+@mixin hf($h, $f) {
+  height: $h;
+  font-size: $f;
 }
 
 // 设定边框
