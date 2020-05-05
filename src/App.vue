@@ -15,7 +15,22 @@ export default {
     }
   },
   mounted() {
-    
+    this.getUser();
+    this.getCartCount();
+  },
+  methods: {
+    // 获取用户信息
+    getUser() {
+      this.axios.get('/user').then((res) => {
+        this.$store.dispatch('saveUserName', res.username);
+      })
+    },
+    // 获取购物车信息
+    getCartCount() {
+      this.axios.get('/carts/products/sum').then((res) => {
+        this.$store.dispatch('saveCartCount', res);
+      })
+    }
   }
   
 }

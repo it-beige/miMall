@@ -14,7 +14,7 @@
             <span>扫码登录</span>
           </h3>
           <div class="input"><input type="text" placeholder="请输入帐号" v-model="username"></div>
-          <div class="input"><input type="text" placeholder="请输入密码" v-model="password"></div>
+          <div class="input"><input type="password" placeholder="请输入密码" v-model="password"></div>
           <div class="btn-box"><a href="javascript:;" class="btn" @click="login">登录</a></div>
           <div class="tips">
             <div class="sms">手机短信登录/<a class="register" href="/#/register">注册</a></div>
@@ -60,7 +60,7 @@ export default {
         password
       }).then((res) => {
         this.$cookie.set('userId', res.id, {expires: '1M'});
-        // todo 保存用户信息
+        this.$store.dispatch('saveUserName', res.username);
         this.$router.push('/index');
       })
     }

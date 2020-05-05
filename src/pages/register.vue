@@ -41,12 +41,14 @@ export default {
   methods: {
     register() {
       let {username, password} = this;
+      if (!password) return;
       this.axios.post('/user/register', {
         username,
         password,
         email: `${username}@163.com`
       }).then(() => {
         alert('注册成功');
+        window.location.href = '/#/login';
       })
     }
   }
