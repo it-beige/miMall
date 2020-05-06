@@ -30,7 +30,7 @@
             <div class="children">
               <ul>
                 <li class="product" v-for="(item, index) in phoneList" :key="index">
-                  <a class="product-wrapper" :href="`/#/product${item.id}`" target="_blank">
+                  <a class="product-wrapper" :href="`/#/product/${item.id}`" target="_blank">
                     <div class="pro-img">
                       <img
                         class="img"
@@ -172,12 +172,6 @@ export default {
     }
   },
   computed: {
-    /* username() {
-      return this.$store.state.username;
-    },
-    cartCount() {
-      return this.$store.state.cartCount;
-    }, */
     ...mapState(['username', 'cartCount'])
   },
   filters: {
@@ -251,31 +245,7 @@ export default {
       position: relative;
       height: 112px;
       @include flex();
-      .header-logo {
-        width: 55px;
-        background-color: #f60;
-        .logo-icon {
-          display: inline-block;
-          width: 110px;
-          height: 55px;
-
-          &::before {
-            content: "";
-            @include bgImg(55px, 55px, "/imgs/mi-logo.png", 55px);
-            transition: margin 0.2s;
-          }
-
-          &::after {
-            content: "";
-            @include bgImg(55px, 55px, "/imgs/mi-home.png", 55px);
-          }
-
-          &:hover::before {
-            margin-left: -55px;
-            transition: margin 0.2s;
-          }
-        }
-      }
+     
 
       .header-menu {
         display: inline-block;
