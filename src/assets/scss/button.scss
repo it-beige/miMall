@@ -1,7 +1,7 @@
 .btn {
   display: inline-block;
   width: 110px;
-  @include hl(30px, 30px);
+  line-height: 30px;
   text-align: center;
   background-color: $colorA;
   color: $colorG;

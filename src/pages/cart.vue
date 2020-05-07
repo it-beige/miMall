@@ -140,13 +140,13 @@ export default {
           productStock = item.productStock;
       if (type === '-') {
         if (quantity === 1) {
-          alert('商品至少保留一件');
+          this.$message.warning('商品至少保留一件');
           return;
         }
         --quantity;
       } else if (type === '+') {
         if (quantity > productStock) {
-          alert('购买数量不能超过库存数量');
+          this.$message.warning('购买数量不能超过库存数量');
           return;
         }
         ++quantity;
@@ -179,7 +179,7 @@ export default {
     order() {
       let flag = this.cartProductList.some(item => item.productSelected);
       if (!flag) {
-        alert('请选择一件商品进行支付!');
+        this.$message.warning('请选择一件商品进行支付!');
         return;
       }
       this.$router.push('/order/confirm');
