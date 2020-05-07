@@ -50,6 +50,7 @@ export default {
     };
   },
   methods: {
+    // 登录请求
     login() {
       let {
         username,
@@ -59,9 +60,15 @@ export default {
         username,
         password
       }).then((res) => {
-        this.$cookie.set('userId', res.id, {expires: '1M'});
+        this.$message.success('登录成功!');
+        this.$cookie.set('userId', res.id, {expires: 'Session'});
         this.$store.dispatch('saveUserName', res.username);
-        this.$router.push('/index');
+        this.$router.push({
+          name: 'index',
+          params: {
+            from: 'login'
+          }
+        });
       })
     }
   }

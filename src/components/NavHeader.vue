@@ -11,6 +11,7 @@
         <div class="user">
           <a class="menu-a" href="javascript:;" v-if="username">{{username}}</a>
           <a class="menu-a" href="javascript:;" v-if="!username" @click="login">登录</a>
+          <a class="menu-a" href="javascript:;" v-if="username" @click="logout">退出</a>
           <a class="menu-a" href="javascript:;" v-if="username">我的订单</a>
           <a class="menu-a my-cart" href="javascript:;" @click="goToCart">
             <span class="icon-cart"></span>
@@ -182,6 +183,10 @@ export default {
   },
   mounted() {
     this.getProductList();
+    let params = this.$route.params;
+    if (params && params.from == 'login') {
+      this.getCartCount();
+    }
   },
   methods: {
     // 动态获取产品信息
@@ -199,9 +204,25 @@ export default {
     goToCart() {
       this.$router.push('/cart');
     },
+    // 获取购物车信息
+    getCartCount() {
+      this.axios.get('/carts/products/sum').then((res) => {
+        this.$store.dispatch('saveCartCount', res);
+      })
+    },
     // 登录跳转
     login() {
       this.$router.push('/login');
+    },
+    // 退出登录
+    logout() {
+      this.axios.post('/user/logout')
+        .then(() => {
+          this.$message.success('退出成功!');
+          this.$cookie.set('userId', '', {expiress: '-1'});
+          this.$store.dispatch('saveUserName', '');
+          this.$store.dispatch('saveCartCount', 0);
+        })
     }
   }
 };
