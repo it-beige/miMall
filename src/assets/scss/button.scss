@@ -26,7 +26,7 @@
 }
 
 .btn-group {
-  @include wh(300px, 100px);
+  @include wh(100%, auto);
   margin: 0 auto;
   .btn{
     margin-right: 20px;
