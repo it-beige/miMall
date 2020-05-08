@@ -2,7 +2,7 @@
   <div class="order-confirm">
     <order-header title="订单确认">
       <template v-slot:tip>
-        <span>请谨防钓鱼链接或诈骗电话，了解更多></span>
+        <span>请认真填写收货地址</span>
       </template>
     </order-header>
     <svg
