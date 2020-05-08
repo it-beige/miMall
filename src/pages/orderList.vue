@@ -8,6 +8,7 @@
     <div class="wrapper">
       <div class="container">
         <div class="order-box">
+          <loading v-if="loading"></loading>
           <div class="order" v-for="(item, i) in orderList" :key="i">
             <div class="order-title">
               <div class="item-info fl">
@@ -42,6 +43,16 @@
               </div>
             </div>
           </div>
+          <el-pagination
+            class="pagination"
+            background
+            layout="prev, pager, next"
+            :pageSize="pageSize"
+            :total="total"
+            @current-change="handleChange"
+            >
+          </el-pagination>
+          <no-data v-if="!loading && orderList.length == 0"></no-data>
         </div>
       </div>
     </div>
@@ -51,25 +62,44 @@
 
 <script>
 import OrderHeader from "../components/OrderHeader";
+import Loading from "../components/Loading";
+import NoData from "../components/NoData";
+import { Pagination } from 'element-ui';
 export default {
   name: "order-list",
   components: {
-    OrderHeader
+    OrderHeader,
+    Loading,
+    NoData,
+    [Pagination.name]: Pagination,
   },
   data() {
     return {
+      loading: true,
       orderList: [], // 订单信息
+      pageSize: 10,
+      pageNum: 1,
+      total: 0,
     }
   },
   mounted() {
     this.getOrderList();
   },
   methods: {
-    // 获取所以订单信息
+    // 获取所有订单信息
     getOrderList() {
-      this.axios.get('/orders')
+      this.axios.get('/orders', {
+        params: {
+          pageSize:10,
+          pageNum:this.pageNum
+        }
+      })
         .then(res => {
+          this.loading = false;
           this.orderList = res.list;
+          this.total = res.total;
+        }).catch(() => {
+          this.loading = false;
         })
     },
     // 支付订单
@@ -80,7 +110,12 @@ export default {
           orderNo
         }
       })
-    }
+    },
+    // 第一种方法：分页器
+    handleChange(pageNum){
+      this.pageNum = pageNum;
+      this.getOrderList();
+    },
   }
 };
 </script>
@@ -156,10 +191,6 @@ export default {
       .el-button--primary {
         background-color: $colorA;
         border-color: $colorA;
-      }
-      .load-more,
-      .scroll-more {
-        text-align: center;
       }
     }
   }

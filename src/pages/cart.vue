@@ -19,6 +19,7 @@
             <li class="col-1">操作</li>
           </ul>
           <ul class="cart-item-list">
+            <loading v-if="loading"></loading>
             <li class="cart-item" v-for="(item, index) in cartProductList" :key="index">
               <div class="item-check">
                 <span class="checkbox" :class="{'checked': item.productSelected}" @click="updateCart(item)"></span>
@@ -80,16 +81,19 @@ import OrderHeader from "../components/OrderHeader";
 import ServiceBar from "../components/ServiceBar";
 import NavFooter from "../components/NavFooter";
 import Modal from "../components/Modal";
+import Loading from "../components/Loading";
 export default {
   name: "cart",
   components: {
     OrderHeader,
     NavFooter,
     ServiceBar,
-    Modal
+    Modal,
+    Loading,
   },
   data() {
     return {
+      loading: true,
       productId: 0, // 商品id
       showModal: false, // 控制模态框显示和隐藏
       cartProductList: [], // 购物车商品列表
@@ -108,6 +112,7 @@ export default {
     getCartList() {
       this.axios.get('/carts')
         .then(res => {
+          this.loading = false;
           this.renderData(res);
       })
     },
