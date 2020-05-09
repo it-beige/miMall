@@ -38,7 +38,10 @@
                   </div>
                 </div>
               </div>
-              <div class="good-state fr">
+              <div class="good-state fr" v-if="item.status == 20">
+                <a href="javascript:;">{{item.statusDesc}}</a>
+              </div>
+              <div class="good-state fr" v-else>
                 <a href="javascript:;" @click="gotoPay(order.orderNo)">{{item.statusDesc}}</a>
               </div>
             </div>
